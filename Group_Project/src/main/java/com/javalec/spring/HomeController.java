@@ -1,4 +1,4 @@
-package com.javalec.group;
+package com.javalec.spring;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -36,12 +36,33 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/appt_viewer")
+	public String appt_viewer(Model model) 
+	{
+		return "appt_viewer";
+	}
 	
-	//
+
+	
+	
 	@RequestMapping("/date_selection")
 	public String date_selection(Model model)
 	{
 		return "date_selection";
-	}	
+	}
+	
+	@RequestMapping("/contact_details")
+	public String contact_details(Model model)
+	{
+		return "contact_details";
+	}
+	
+	
+	
+	@RequestMapping("/confirm_appt")
+	public String confirm_appt(Model model) 
+	{
+		return "confirm_appt";
+	}
 	
 }

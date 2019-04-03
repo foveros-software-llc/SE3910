@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -38,14 +36,17 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/appt_viewer")
-	public String appt_viewer(Model model) 
+	@RequestMapping("/service_selection")
+	public String service_selection(Model model) 
 	{
-		return "appt_viewer";
+		return "service_selection";
 	}
 	
-
-	
+	@RequestMapping("/location_selection")
+	public String location_selection(Model model) 
+	{
+		return "location_selection";
+	}
 	
 	@RequestMapping("/date_selection")
 	public String date_selection(Model model)
@@ -59,21 +60,16 @@ public class HomeController {
 		return "contact_details";
 	}
 	
-	
-	
 	@RequestMapping("/confirm_appt")
 	public String confirm_appt(Model model) 
 	{
 		return "confirm_appt";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/contact") // url
-	public String screen5Controller(HttpServletRequest httpServletRequest, Model model) {
-		//fname is given in the previous view
-		String fname = httpServletRequest.getParameter("fname");
-		
-		model.addAttribute("name", fname);
-		
-		return "confirm_appt"; // jsp file name
+	@RequestMapping("/appt_viewer")
+	public String appt_viewer(Model model) 
+	{
+		return "appt_viewer";
 	}
+
 }

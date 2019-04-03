@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -65,4 +67,13 @@ public class HomeController {
 		return "confirm_appt";
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/contact") // url
+	public String screen5Controller(HttpServletRequest httpServletRequest, Model model) {
+		//fname is given in the previous view
+		String fname = httpServletRequest.getParameter("fname");
+		
+		model.addAttribute("name", fname);
+		
+		return "confirm_appt"; // jsp file name
+	}
 }

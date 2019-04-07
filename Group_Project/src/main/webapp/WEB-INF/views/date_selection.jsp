@@ -55,7 +55,7 @@
     <h1>Let's find a time that works for you.</h1>
     <br>
     <form action="date_selected" method="post">
-    <input id='datePicker' type='text' class='datepicker-here' data-language='en'/> <!--class for date picker must be "datepicker-here" -->
+    <input id='datePicker' type='text' class='datepicker-here' data-language='en' name="date"/> <!--class for date picker must be "datepicker-here" -->
     <button type="submit" id="submit_Button"><i class="fa fa-search"></i></button> <!--https://www.w3schools.com/howto/howto_css_search_button.asp -->
     </form>
     <br>

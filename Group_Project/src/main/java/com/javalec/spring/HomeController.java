@@ -53,6 +53,20 @@ public class HomeController {
 	@RequestMapping("/date_selection")
 	public String date_selection(Model model)
 	{
+		
+		return "date_selection";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/date_selected")
+	public String screen3Controller(HttpServletRequest httpServletRequest, Model model) {
+		
+		String user_selected_date = httpServletRequest.getParameter("date");
+		model.addAttribute("user_selected_date", user_selected_date);
+		
+		//use query stored in Dao to query available branches/times based on input date
+		
+		//send that data to jsp
+		
 		return "date_selection";
 	}
 	

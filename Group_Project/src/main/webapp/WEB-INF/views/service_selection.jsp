@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/stylesheet.css"/>
         <title>Commerce Bank - Services</title>
         
         <style type="text/css">
@@ -26,24 +27,24 @@
         <form method="post">
             <table align="center">
                 <tr>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgChangeAccount_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgSavingsAccount_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgCDMoneyAccount_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgChangeAccount_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgSavingsAccount_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgCDMoneyAccount_Inactive.png"></div></td>
                 </tr>
                 <tr>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgStudentBanking_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgAutoLoans_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgHomeEquity_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgStudentBanking_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgAutoLoans_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgHomeEquity_Inactive.png"></div></td>
                 </tr>
                 <tr>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgMortgage_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgStudentLoans_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgRetirementSaving_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgMortgage_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgStudentLoans_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgRetirementSaving_Inactive.png"></div></td>
                 </tr>
                 <tr>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgInvestmentAccount_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources/service_buttons/imgCreditCard_Inactive.png"></div></td>
-                    <td><div><img src="${pageContext.request.contextPath}/resources//service_buttons/imgOther_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgInvestmentAccount_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgCreditCard_Inactive.png"></div></td>
+                    <td><div><img src="resources/service_buttons/imgOther_Inactive.png"></div></td>
                 </tr>
             </table>
             <input type="text" height="5" value="Add a note" size="35">

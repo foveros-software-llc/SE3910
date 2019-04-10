@@ -1,0 +1,86 @@
+filters:
+branch
+date
+time (start time)
+
+will display:
+branch   date   time   customer 
+
+could add filters: customer, service
+
+//all filters selected
+select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+from customerappointments ca
+join appointments a on a.appointmentid = ca.appointmentid
+join banklocations bl on bl.banklocationid = a.banklocationid
+join customers c on c.customerid = a.customerid
+-values to be replaced:
+	-
+	-
+
+//only branch selected
+select * from banklocations 
+
+//only date selected
+select * from appointments
+where date >= (dateEntered)
+
+
+
+note:
+-branches filter should be a combobox
+-start time: displays appointments on or after the entered time
+-
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+inserts screen 4
+
+NOTE: sql is not case-sensitive aka uppercase or lowercase is acceptable
+order for information insertion
+
+pre-populated tables
+-appointmentservices
+-banklocations
+-services
+
+when an appointment information is passed down to screen 4
+-insert into customers
+-insert into appointments
+-insert into appointmentServices
+-insert into customerappointments
+
+Example insertions:
+
+//do not enter any information for the customerid, it is auto-generated
+insert into customers
+(CustomerFirstName, CustomerLastName, CustomerEmail, CustomerPhoneNumber)
+values ('bob', 'smith', 'bobsmith@gmail.com', '816123456')
+
+to add more values at the same time:
+insert into customers
+(CustomerFirstName, CustomerLastName, CustomerEmail, CustomerPhoneNumber)
+values ('bob1', 'smith1', 'bob1smith@gmail.com', '816123456'),
+       ('bob2', 'smith2', 'bob2smith@gmail.com', '816123436'),
+       ('bob3', 'smith3', 'bob3smith@gmail.com', '816123416');
+
+
+NOTE: time format is HH:MIN:SEC, date format is 'yyyy-mm-dd'
+insert into appointments
+(appointmentdate, appointmentstartTime, appointmentendtime, customerid, banklocationid)
+values ('2018-01-01', '10:30:00', '11:00:00', 1, 1);
+
+
+insert into appointmentservices
+(appointmentid, banklocationserviceid, serviceid)
+values (1, 2, 1)
+
+
+//customerappointmentstatus accepted values are 0,1,2
+	-0 means appointment not completed, 1 means appoinment completed, 2 means appointment canceled
+insert into customerappointments
+(customerappointmentstatus, appointmentid, appointmentserviceid)
+values (1, 2, 1)
+
+
+	

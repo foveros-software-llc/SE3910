@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2019 at 08:44 PM
+-- Generation Time: Apr 12, 2019 at 02:44 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -58,6 +58,14 @@ CREATE TABLE `appointmentservices` (
   `ServiceId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `appointmentservices`
+--
+
+INSERT INTO `appointmentservices` (`AppointmentServiceId`, `appointmentid`, `BankLocationServiceId`, `ServiceId`) VALUES
+(1, 1, 1, 2),
+(2, 3, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -107,10 +115,18 @@ INSERT INTO `banklocationservices` (`BankLocationServiceId`, `BankLocationId`, `
 
 CREATE TABLE `customerappointments` (
   `CustomerAppointmentId` int(11) NOT NULL,
-  `CustomerAppointmentStatus` int(11) NOT NULL,
+  `CustomerAppointmentStatus` int(11) NOT NULL COMMENT '0=not completed, 1=completed, 2=canceled',
   `appointmentid` int(11) DEFAULT NULL,
   `AppointmentServiceId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customerappointments`
+--
+
+INSERT INTO `customerappointments` (`CustomerAppointmentId`, `CustomerAppointmentStatus`, `appointmentid`, `AppointmentServiceId`) VALUES
+(1, 1, 1, 1),
+(2, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -123,14 +139,14 @@ CREATE TABLE `customers` (
   `CustomerFirstName` varchar(50) NOT NULL,
   `CustomerLastName` varchar(50) NOT NULL,
   `CustomerEmail` varchar(50) NOT NULL,
-  `CustomerPassword` varchar(50) NOT NULL
+  `CustomerPhoneNumber` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`CustomerId`, `CustomerFirstName`, `CustomerLastName`, `CustomerEmail`, `CustomerPassword`) VALUES
+INSERT INTO `customers` (`CustomerId`, `CustomerFirstName`, `CustomerLastName`, `CustomerEmail`, `CustomerPhoneNumber`) VALUES
 (1, 'bob', 'smith', 'bob.smith@gmail.com', '123'),
 (2, 'bob2', 'smith2', 'bob2.smith2@gmail.com', '456');
 
@@ -224,7 +240,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `appointmentservices`
 --
 ALTER TABLE `appointmentservices`
-  MODIFY `AppointmentServiceId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AppointmentServiceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `banklocations`
@@ -242,7 +258,7 @@ ALTER TABLE `banklocationservices`
 -- AUTO_INCREMENT for table `customerappointments`
 --
 ALTER TABLE `customerappointments`
-  MODIFY `CustomerAppointmentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CustomerAppointmentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`

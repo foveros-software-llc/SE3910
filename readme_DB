@@ -59,9 +59,16 @@ where bl.BankLocationId = 1
 	-Query for bankLocationId: select banklocationid from banklocations
 
 -"Time" label will be changed to "Start Time": displays appointments on or after the entered time
-	-Query: select * from appointments where appointmentstarttime > (time entered)
+	-Query: 
+	select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+		a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+		from customerappointments ca
+		join appointments a on a.appointmentid = ca.appointmentid
+		join banklocations bl on bl.banklocationid = a.banklocationid
+		join customers c on c.customerid = a.customerid
+		where a.AppointmentStartTime >= '14:00:00' //same as 2pm
 	
-Note: if the selected filters result in no results, display a message to let the user know
+Note: if the selected filters result in no results, display a message to let the user know that
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 inserts screen 4

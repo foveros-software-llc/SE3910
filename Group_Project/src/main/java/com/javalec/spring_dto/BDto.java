@@ -5,35 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.util.Date;
 
 import com.javalec.spring_dao.BDao;
 
 public class BDto {
-	//*****This will have to be rewritten (need help remembering what all we will have stored)
-	String Id;
-	String Pw;
-	String Name;
-	String Phone;
+
 	
-	public BDto(String Id, String Pw, String Name, String Phone) {
-		this.Id = Id;
-		this.Pw = Pw;
-		this.Name = Name;
-		this.Phone = Phone;
+	String bankStreet;
+	
+	
+	public BDto(String bankStreet) {
+		this.bankStreet = bankStreet;
+
 	}
+	
 	//getters and setters here
-	public String getId() {
-		return Id;
+	public String getbankStreet() {
+		return bankStreet;
 	}
-	public void setId(String id) {
-		Id = id;
+
+
+	public void setbankstreet(String bankStreet) {
+		this.bankStreet = bankStreet;
 	}
-	public String getPw() {
-		return Pw;
-	}
-	public void setPw(String pw) {
-		Pw = pw;
-	}
+
+
 
 }

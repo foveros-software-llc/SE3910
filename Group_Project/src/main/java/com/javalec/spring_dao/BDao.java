@@ -2,9 +2,10 @@ package com.javalec.spring_dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -12,30 +13,33 @@ import javax.sql.DataSource;
 
 import com.javalec.spring_dto.BDto;
 
+
 public class BDao {
 
+
 	/*Once the database is imported into the project you MUST go to your server and modify the context.xml file 
-		<Context>		
-		<Resource name="jdbc/[YourDatabaseName]"		
-		auth="Container"		
-		type="javax.sql.DataSource"		
-		username="[DatabaseUsername]"		
-		password="[DatabasePassword]"		
-		driverClassName="com.mysql.jdbc.Driver"		
-		url="jdbc:mysql:/[yourserver]:3306/[yourapplication]"		
-		maxActive="15"		
-		maxIdle="3"/>		
-		</Context>
+		<Resource auth="Container" 
+    	driverClassName="com.mysql.jdbc.Driver" 
+    	maxActive="50" 
+    	maxWait="1000" 
+    	name="jdbc/sdg_db" 
+    	password="password" 
+    	type="javax.sql.DataSource" 
+    	url="jdbc:mysql://localhost/sdg_db" 
+    	username="mdb52120"
+    	/>
+		
+		Download link for JBDC you must have on your computer
+		https://dev.mysql.com/downloads/windows/installer/8.0.html
 
 	*/
 	DataSource dataSource;
 	
 	public BDao() {
 		try {
-				Context context = new InitialContext();
+				Context context = new InitialContext();				
 				
-				//*****This must be updated when we import the database
-				dataSource = (DataSource)context.lookup("java:comp/env/jdbc/Oracle11g");
+				dataSource = (DataSource)context.lookup("java:comp/env/jdbc/sdg_db");
 			
 	             } catch (NamingException e) {
 				// TODO Auto-generated catch block
@@ -55,21 +59,18 @@ public class BDao {
 		
 		try {
 			connection =  dataSource.getConnection();
-			//*****The list of queries will have to be updated
-			String query = "select id, pw, name, phone from se3910";
+			//Query from Miguel that you want to run.
+			String query = "select concat(bl.BankStreet, ' ', bl.BankCity, ', ', bl.BankState,' ', bl.BankZipCode) as BankStreet from banklocationservices bls join banklocations bl on bl.BankLocationId = bls.BankLocationId where bls.serviceId = 1 and 3";
 			
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			
-			//*****This will have to be modified
+			
 			while(resultSet.next()) {
-				String Uid = resultSet.getString("id");
-				String Upw = resultSet.getString("pw");
-				String Uname = resultSet.getString("name");
-				String Uphone = resultSet.getString("phone");
-				BDto dto = new BDto(Uid, Upw, Uname, Uphone);
+				String QuerybankStreet = resultSet.getString("bankStreet");
+				BDto dto = new BDto(QuerybankStreet);
 				dtos.add(dto);
-				
+				System.out.println(dto);
 			}
 			
 			

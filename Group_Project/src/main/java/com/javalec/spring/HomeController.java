@@ -1,6 +1,7 @@
 package com.javalec.spring;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.javalec.spring_dao.BDao;
+import com.javalec.spring_dto.BDto;
 
 /**
  * Handles requests for the application home page.
@@ -53,6 +57,10 @@ public class HomeController {
 	@RequestMapping("/date_selection")
 	public String date_selection(Model model)
 	{
+		BDao dao = new BDao();
+		ArrayList<BDto> dtos = dao.list();
+		model.addAttribute("list", dtos);
+		
 		
 		return "date_selection";
 	}
@@ -64,7 +72,8 @@ public class HomeController {
 		model.addAttribute("user_selected_date", user_selected_date);
 		
 		//use query stored in Dao to query available branches/times based on input date
-		
+
+
 		//send that data to jsp
 		
 		return "date_selection";

@@ -6,8 +6,7 @@ time (start time)
 will display:
 branch   date   time   customer 
 
-could add filters: customer, service
-
+IF making all fields required before filtering then use the query below:
 //all filters selected
 select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
 a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
@@ -15,23 +14,61 @@ from customerappointments ca
 join appointments a on a.appointmentid = ca.appointmentid
 join banklocations bl on bl.banklocationid = a.banklocationid
 join customers c on c.customerid = a.customerid
--values to be replaced:
-	-
-	-
+
+Recommendation: branch filter is combobox populated with query:
+		-select concat(bankstreet,' ', bankcity,' ', bankstate,' ', bankzipcode) as branch from banklocations
+------------------------------------------------------------------------------------------------------------------------------------
+IF NOT making all fields required before filtering then use these queries:
+//only date selected
+select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+from customerappointments ca
+join appointments a on a.appointmentid = ca.appointmentid
+join banklocations bl on bl.banklocationid = a.banklocationid
+join customers c on c.customerid = a.customerid
+where a.AppointmentDate >= 'date_goes_here'  //format 'yyyy-mm-dd'
 
 //only branch selected
-select * from banklocations 
+//using the whole address
+select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+from customerappointments ca
+join appointments a on a.appointmentid = ca.appointmentid
+join banklocations bl on bl.banklocationid = a.banklocationid
+join customers c on c.customerid = a.customerid
+where bl.bankstreet = '123 street'
+      and bl.bankcity = 'Kansas City'
+      and bl.bankstate = 'Missouri' 
+      and bl.bankzipcode = '64063'
+     
+OR
 
-//only date selected
-select * from appointments
-where date >= (dateEntered)
+//only using BankLocationId
+select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+from customerappointments ca
+join appointments a on a.appointmentid = ca.appointmentid
+join banklocations bl on bl.banklocationid = a.banklocationid
+join customers c on c.customerid = a.customerid
+where bl.BankLocationId = 1
 
+//for populating the "Branch" combobox:
+-branches filter should be populated with either bankLocationId OR the whole address of banklocations available
+	-Query for whole address: select concat(bankstreet,' ', bankcity,' ', bankstate,' ', bankzipcode) as branch 
+				  from banklocations
+	-Query for bankLocationId: select banklocationid from banklocations
 
-
-note:
--branches filter should be a combobox
--start time: displays appointments on or after the entered time
--
+-"Time" label will be changed to "Start Time": displays appointments on or after the entered time
+	-Query: 
+	select concat(bl.bankstreet,' ', bl.bankcity,' ', bl.bankstate,' ', bl.bankzipcode) as branch, a.appointmentdate, 
+		a.appointmentStartTime, concat(c.customerFirstName,' ', c.customerLastName) as customer
+		from customerappointments ca
+		join appointments a on a.appointmentid = ca.appointmentid
+		join banklocations bl on bl.banklocationid = a.banklocationid
+		join customers c on c.customerid = a.customerid
+		where a.AppointmentStartTime >= '14:00:00' //same as 2pm
+	
+Note: if the selected filters result in no results, display a message to let the user know that
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 inserts screen 4

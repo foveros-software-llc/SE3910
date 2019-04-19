@@ -54,15 +54,19 @@ public class HomeController {
 		return "location_selection";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/location_selection2")
+	@RequestMapping(method=RequestMethod.POST, value="/location_selection")
 	public String screen2Controller(HttpServletRequest httpServletRequest, Model model) {
 		
 		String userSelectedServices = httpServletRequest.getParameter("whateverShannonNamesThisParameter");
 		model.addAttribute("selectedServices", userSelectedServices);
 		
+		//I'm assuming the userSelectedServices string will be "SERVICE, SERVICE,... SERVICE"
+		
 		//TODO query database for list of valid locations and their address via the dao
 		
-		//TODO add the list of locations to the dao
+		
+		//TODO add the list of locations to the model
+		
 		
 		return "location_selection";
 	}

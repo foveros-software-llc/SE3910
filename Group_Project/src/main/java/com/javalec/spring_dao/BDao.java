@@ -91,5 +91,67 @@ public class BDao {
 	
 	}
 	
-	
+	public ArrayList<BDto> findLocationsViaServices(String services) {
+		
+		ArrayList<BDto> dtos = new ArrayList<BDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		//TODO turn String services into list of related serviceIds
+		String serviceIDs = null; //should be "ID, ID, ID,... ID)"
+		String[] tokens = services.split(", ");
+		
+		//I'm assuming the services string will be "SERVICE, SERVICE,... SERVICE"
+		for (String t : tokens) {
+			if (t.equals("Checking Account")) serviceIDs = serviceIDs + ", 1";
+			if (t.equals("Savings Account")) serviceIDs = serviceIDs + ", 2";
+			if (t.equals("CDs/Money Market Accounts")) serviceIDs = serviceIDs + ", 3";
+			if (t.equals("Student Banking")) serviceIDs = serviceIDs + ", 4";
+			if (t.equals("Auto Loans")) serviceIDs = serviceIDs + ", 5";
+			if (t.equals("Home Equity")) serviceIDs = serviceIDs + ", 6";
+			if (t.equals("Morgage")) serviceIDs = serviceIDs + ", 7";
+			if (t.equals("Student Loans")) serviceIDs = serviceIDs + ", 8";
+			if (t.equals("Savins for Retirement")) serviceIDs = serviceIDs + ", 9";
+			if (t.equals("Investment Account")) serviceIDs = serviceIDs + ", 10";
+			if (t.equals("Credit Card")) serviceIDs = serviceIDs + ", 11";
+			if (t.equals("Other")) serviceIDs = serviceIDs + ", 12";
+		}
+		serviceIDs = serviceIDs + ")";
+		
+		//TODO create new String for the WHERE bls.serviceId query parameters
+		
+		
+		try {
+			connection =  dataSource.getConnection();
+			String query = "SELECT CONCAT(bl.BankStreet, ' ', bl.BankCity, ', ', bl.BankState,' ', bl.BankZipCode) "
+					+ "AS BankStreet FROM banklocationservices bls "
+					+ "JOIN banklocations bl ON bl.BankLocationId = bls.BankLocationId "
+					+ "WHERE bls.serviceId IN (";
+			
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			
+			
+			while(resultSet.next()) {
+				String QuerybankStreet = resultSet.getString("bankStreet");
+				BDto dto = new BDto(QuerybankStreet);
+				dtos.add(dto);
+				System.out.println(dto);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			} catch(Exception e2) {
+				
+			}
+		}
+		
+		return dtos;
+	}
 }

@@ -63,10 +63,11 @@ public class HomeController {
 		//I'm assuming the userSelectedServices string will be "SERVICE, SERVICE,... SERVICE"
 		
 		//TODO query database for list of valid locations and their address via the dao
-		
+		BDao dao = new BDao();
+		ArrayList<BDto> dtos = dao.findLocationsViaServices(userSelectedServices);
 		
 		//TODO add the list of locations to the model
-		
+		model.addAttribute("locationsWithUserSelectedServices", dtos);
 		
 		return "location_selection";
 	}

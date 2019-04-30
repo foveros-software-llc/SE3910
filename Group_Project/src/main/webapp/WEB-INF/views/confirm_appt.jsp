@@ -9,20 +9,17 @@
 
 </head>
 <body>
-<!-- Several values must be provided by the controller to be displayed here -->
 
 Here's your appointment:<br/><br/>
-<label id="label1">${name},</label>
+<label id="label1">${fname},</label>
 <label id="label2">Your appointment is scheduled.  We'll see you soon!</label><br/><br/>
 
 <label id="label3">${address}</label><br/>
 Open in Maps<br/><br/>
 
-<label id="label4">${date}</label><br/>
-<label id="label5">${time}</label><br/>
+<label id="label4">${appointmentdate}</label><br/>
+<label id="label5">${appointmentstartTime}</label><br/>
 Add to Calendar<br/><br/><br/>
-
-<label id="label6">${type}</label><br/><br/>
 
 <form>
 <input type="submit" name="close" id="close" value="Add Appointment">

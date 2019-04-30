@@ -28,7 +28,7 @@
 </head>
 <body>
 <h1>Now we just need a few more details.</h1>
-<form action="contact" method="post">
+<form action="/spring/confirm_appt" method="post">
     <div class="container1">
     </div>
     <div class="container2">

@@ -61,9 +61,6 @@ public class HomeController {
 	@RequestMapping("/date_selection")
 	public String date_selection(Model model)
 	{
-		BDao dao = new BDao();
-		ArrayList<BDto> dtos = dao.list();
-		model.addAttribute("list", dtos);
 		
 		
 		return "date_selection";
@@ -72,15 +69,15 @@ public class HomeController {
 	@RequestMapping(method=RequestMethod.POST, value="/date_selected")
 	public String screen3Controller(HttpServletRequest httpServletRequest, Model model) {
 		
-		String user_selected_date = httpServletRequest.getParameter("date");
-		model.addAttribute("user_selected_date", user_selected_date);
+		//Retrieving the data from the jsp
+		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
+		String appointmentstartTime = httpServletRequest.getParameter("appointmentstartTime");
+		//Adding data to the model
+		model.addAttribute("appointmentdate", appointmentdate);
+		model.addAttribute("appointmentstartTime", appointmentstartTime);
 		
-		//use query stored in Dao to query available branches/times based on input date
-
-
-		//send that data to jsp
-		
-		return "date_selection";
+		//Calling the next screen
+		return "contact_details";
 	}
 	
 	

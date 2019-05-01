@@ -11,7 +11,7 @@
 <body>
 
 Here's your appointment:<br/><br/>
-<label id="label1">${fname},</label>
+<label id="label1">${CustomerFirstName},</label>
 <label id="label2">Your appointment is scheduled.  We'll see you soon!</label><br/><br/>
 
 <label id="label3">${address}</label><br/>

@@ -91,13 +91,16 @@ public class HomeController {
 	@RequestMapping(method=RequestMethod.POST, value="/confirm_appt")
 	public String screen4Controller(HttpServletRequest httpServletRequest, Model model)
 	{
+		System.out.println("AppointmentDate: " + httpServletRequest.getParameter("appointmentdate"));
+		
+		System.exit(0);
 		// Data that should be passed to screen4?
 		// For "appointmentservices" table:
 		String appointmentid = null;
 		String banklocationserviceid = null;
 		String serviceid = null;
 		// For "appointments" table:
-		String appointmentdate = null;
+		//String appointmentdate = null;
 		String appointmentstartTime = null;
 		String appointmentendtime = null;
 		String customerid = null;
@@ -112,7 +115,8 @@ public class HomeController {
 		appointmentid = String.valueOf(paramsMap.get("appointmentid"));
 		banklocationserviceid = String.valueOf(paramsMap.get("banklocationserviceid"));
 		serviceid = String.valueOf(paramsMap.get("serviceid"));
-		appointmentdate = String.valueOf(paramsMap.get("appointmentdate"));
+		//String appointmentdate = String.valueOf(paramsMap.get("appointmentdate"));
+		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
 		appointmentstartTime = String.valueOf(paramsMap.get("appointmentstartTime"));
 		appointmentendtime = String.valueOf(paramsMap.get("appointmentendtime"));
 		//customerid; //Should not exist in map
@@ -124,6 +128,7 @@ public class HomeController {
 		String lname = httpServletRequest.getParameter("lname");
 		String email = httpServletRequest.getParameter("email");
 		String phone = httpServletRequest.getParameter("phone");
+		
 		
 		// Instantiate DTO
 		S4Dto s4dto = new S4Dto();
@@ -145,6 +150,7 @@ public class HomeController {
 		// Instantiate DAO
 		S4Dao s4dao = new S4Dao();
 		
+		
 		// Insert into "customers" table
 		s4dao.insCustomerData(s4dto);
 		
@@ -160,6 +166,8 @@ public class HomeController {
 		
 		// Insert into "customerappointments" table
 		s4dao.insCustomerStatus(s4dto);
+		
+		
 		
 		// Is this necessary?
 		model.addAttribute("CustomerFirstName", fname);

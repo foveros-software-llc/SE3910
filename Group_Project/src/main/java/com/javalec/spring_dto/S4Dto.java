@@ -30,7 +30,7 @@ public class S4Dto
 		appointmentid = null;
 		banklocationserviceid = null;
 		serviceid = null;
-		appointmentdate = null;
+		appointmentdate = "qwe";
 		appointmentstartTime = null;
 		appointmentendtime = null;
 		customerid = null;

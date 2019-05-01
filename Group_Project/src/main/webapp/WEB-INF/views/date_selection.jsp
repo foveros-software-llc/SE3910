@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
         background: #f1f1f1;
     }
     /* Style for the submit button */
-    #submit_Button
+    .submit_Button
     {
         float: left;
         width: 5%;
@@ -45,14 +45,22 @@
     {
         width: 100px;
         height: 50px;
-        padding: 10px;
+        padding: 5px;
         background: white;
         color: black;
         font-size: 17px;
-        border: 2px solid blue;
-        
+        border: 2px solid #2196F3;
+        border-bottom: 4px solid #2196F3;
+        border-radius: 5px;
         cursor: pointer;
-    }  
+    }
+    
+    .buttons:hover
+    {
+        border: 2px solid #0b7dda;
+        border-bottom: 4px solid #0b7dda;
+        background: yellow;
+    }
     
     th
     {
@@ -65,12 +73,26 @@
     {
         background: #0b7dda;
     }
+    
+    .hidden
+    {
+    	visibility: hidden;
+    }
+    
+    .visible
+    {
+    	visibility: visible;
+    }
+    
     </style>
     
     <script type="text/javascript">
     var submit_btn;
     var date_container;
     var div;
+    var submit_form;
+    var date_holder;
+    var time_holder;
     var weekday_times = new Array("9:00 AM","10:00 AM" ,"11:00 AM", "12:00 PM", "1:00 PM","2:00 PM","3:00 PM");
     var weekend_times = new Array("10:00 AM" ,"11:00 AM");
     var table_string = " ";
@@ -83,7 +105,10 @@
     	
     	div = document.getElementById("database_results");
         submit_btn = document.getElementById("submit_Button");
-        submit_btn.addEventListener("click", function(){ dateEntered(); });       
+        submit_btn.addEventListener("click", function(){ dateEntered(); });
+        submit_form = document.getElementById("submit_form");
+        date_holder = document.getElementById("date_holder");
+        time_holder = document.getElementById("time_holder");
     }
     
     function dateEntered(){
@@ -93,63 +118,80 @@
     	day = parseInt(parts[1]);	//DD
     	month = parseInt(parts[0]); //MM
     	year = parseInt(parts[2]);	//YYYY
-    	user_date = new Date(year, month - 1, day);
+    	user_date0 = new Date(year, month - 1, day);
     	user_date1 = new Date(year, month - 1, day + 1);
     	user_date2 = new Date(year, month - 1, day + 2);
     	table_string += "<table>"
     		table_string += "<tr>"
-    			table_string += "<th align='left' colspan='4'>" + user_date.toDateString() + "</th>";
+    			table_string += "<th align='left' colspan='4'>" + user_date0.toDateString() + "</th>";
     		table_string += "</tr>";
     		table_string += "<tr>";
-    			table_string += "<td><button type='button' class='buttons'>9:00 AM</button></td>";
-    			table_string += "<td><button  type='button' class='buttons'>10:00 AM</button></td>";
-    			table_string += "<td><button type='button' class='buttons'>11:00 AM</button></td>";
-    			table_string += "<td><button type='button' class='buttons'>12:00 AM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '9:00 AM')'>9:00 AM</button></td>";
+    			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(1, '10:00 AM')'>10:00 AM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '11:00 AM')'>11:00 AM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '12:00 PM')'>12:00 PM</button></td>";
     		table_string += "</tr>";
         	table_string += "<tr>";
-    			table_string += "<td><button type='button' class='buttons'>1:00 PM</button></td>";
-    			table_string += "<td><button type='button' class='buttons'>2:00 PM</button></td>";
-    			table_string += "<td><button type='button' class='buttons'>3:00 PM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '1:00 PM')'>1:00 PM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '2:00 PM')'>2:00 PM</button></td>";
+    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '3:00 PM')'>3:00 PM</button></td>";
     		table_string += "</tr>";    			
     	table_string += "</table>"
-    	
+    		table_string += "<br/>"
         table_string += "<table>"
         	table_string += "<tr>"
        			table_string += "<th align='left' colspan='4'>" + user_date1.toDateString() + "</th>";
        		table_string += "</tr>";
        		table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons'>9:00 AM</button></td>";
-       			table_string += "<td><button  type='button' class='buttons'>10:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>11:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>12:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '9:00 AM')'>9:00 AM</button></td>";
+       			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(2, '10:00 AM')'>10:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '11:00 AM')'>11:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '12:00 PM')'>12:00 PM</button></td>";
        		table_string += "</tr>";
            	table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons'>1:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>2:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>3:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '1:00 PM')'>1:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '2:00 PM')'>2:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '3:00 PM')'>3:00 PM</button></td>";
        		table_string += "</tr>";    			
        	table_string += "</table>"
-        	
+       		table_string += "<br/>"
        	table_string += "<table>"
        		table_string += "<tr>"
        			table_string += "<th align='left' colspan='4'>" + user_date2.toDateString() + "</th>";
        		table_string += "</tr>";
        		table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons'>9:00 AM</button></td>";
-       			table_string += "<td><button  type='button' class='buttons'>10:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>11:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>12:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '9:00 AM')'>9:00 AM</button></td>";
+       			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(3, '10:00 AM')'>10:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '11:00 AM')'>11:00 AM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '12:00 PM')'>12:00 PM</button></td>";
        		table_string += "</tr>";
            	table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons'>1:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>2:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons'>3:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '1:00 PM')'>1:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '2:00 PM')'>2:00 PM</button></td>";
+       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '3:00 PM')'>3:00 PM</button></td>";
        		table_string += "</tr>";    			
-       	table_string += "</table>"    	
+       	table_string += "</table>";
+       	table_string += "<br/>";    	
 
     	div.innerHTML = table_string;
+       	
+       	submit_form.classList.remove("hidden");
+       	submit_form.classList.add("visible");
     }
     
+    
+    function timeSelected(date, time){
+    	
+    	if(date == 0){
+    		date_holder.value = user_date0;
+    	}else if(date == 1){
+    		date_holder.value = user_date1;
+    	}else if(date == 2){
+			date_holder.value = user_date2;
+		}
+    	
+    	time_holder.value = time; 
+    }
     
     window.addEventListener('load', start, false);
     </script>
@@ -161,31 +203,22 @@
 
     <h1>Let's find a time that works for you.</h1>
     <br>
-    <input id='datePicker' type='text' class='datepicker-here' data-language='en' name="date"/> <!--class for date picker must be "datepicker-here" -->
-    <button type="button" id="submit_Button"><i class="fa fa-search" ></i></button> <!--https://www.w3schools.com/howto/howto_css_search_button.asp -->
+    <input id='datePicker' type='text' class='datepicker-here' data-language='en' name="date" value="CHOOSE DATE"/> <!--class for date picker must be "datepicker-here" -->
+    <button type="button" id="submit_Button" class="submit_Button"><i class="fa fa-search" ></i></button> <!--https://www.w3schools.com/howto/howto_css_search_button.asp -->
     <br>
     <br>
     <br>
-	<table width = "500" cellpadding = "0" cellspacing = "0" border="1">
-	<tr> 
-		<td> Branch </td>
-
-	</tr>
-    <c:forEach items ="${list}" var = "dto"> 
-    <tr>
-		<td> ${dto.bankStreet} </td>
-
-	</tr>
-	</c:forEach>
-    </table>
-    
  
     
     <div id="database_results">
-
-        
+    
+	
     </div>
-
+    <form class="hidden" id="submit_form" action="/spring/date_selected" method="post">
+	<input type="hidden" id="date_holder" name="appointmentdate" value=" ">
+	<input type="hidden" id="time_holder"name="appointmentstartTime" value=" ">
+	<button type="submit" class="submit_Button">Continue</button>
+	</form>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.javalec.spring_dto;
 public class S4Dto
 {
 	// For "appointmentservices" table; pending data passed from previous views
-	String appointmentid;
+	int appointmentid;
 	String banklocationserviceid;
 	String serviceid;
 	
@@ -27,13 +27,13 @@ public class S4Dto
 	// Constructor will be expanded depending on passed data from previous views
 	public S4Dto()
 	{
-		appointmentid = null;
+		appointmentid = 3;
 		banklocationserviceid = null;
 		serviceid = null;
 		appointmentdate = null;
 		appointmentstartTime = null;
 		appointmentendtime = null;
-		customerid = null;
+		customerid = "0";
 		banklocationid = null;
 		
 		fname = null;
@@ -44,13 +44,13 @@ public class S4Dto
 	
 	public S4Dto(String fname, String lname, String email, String phone)
 	{
-		appointmentid = null;
+		appointmentid = 30;
 		banklocationserviceid = null;
 		serviceid = null;
 		appointmentdate = null;
 		appointmentstartTime = null;
 		appointmentendtime = null;
-		customerid = null;
+		customerid = "30";
 		banklocationid = null;
 		
 		this.fname = fname;
@@ -80,7 +80,7 @@ public class S4Dto
 		return phone;
 	}
 	
-	public String getAppointmentId()
+	public int getAppointmentId()
 	{
 		return appointmentid;
 	}
@@ -153,7 +153,7 @@ public class S4Dto
 		this.phone = phone;
 	}
 	
-	public void setAppointmentId(String appointmentid)
+	public void setAppointmentId(int appointmentid)
 	{
 		this.appointmentid = appointmentid;
 	}

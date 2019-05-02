@@ -71,7 +71,7 @@ public class HomeController {
 		
 		//Retrieving the data from the jsp
 		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
-		String appointmentstartTime = httpServletRequest.getParameter("appointmentstartTime");
+		String appointmentstartTime = httpServletRequest.getParameter("appointmentstarttime");
 		//Adding data to the model
 		model.addAttribute("appointmentdate", appointmentdate);
 		model.addAttribute("appointmentstartTime", appointmentstartTime);
@@ -93,32 +93,32 @@ public class HomeController {
 	{
 		// Data that should be passed to screen4?
 		// For "appointmentservices" table:
-		String appointmentid = null;
-		String banklocationserviceid = null;
+		//String appointmentid = null;
+		/*String banklocationserviceid = null;
 		String serviceid = null;
 		// For "appointments" table:
 		String appointmentdate = null;
 		String appointmentstartTime = null;
 		String appointmentendtime = null;
-		String customerid = null;
-		String banklocationid = null;
+		String customerid = null;*/
+		String banklocationid = "1";
 		//String customerappointmentstatus = null;
-		String appointmentserviceid = null;
+		String appointmentserviceid = "1";
 		
 		// Get model map to determine key,value pairs of previous views
-		Map<String, Object> paramsMap = model.asMap();
+		//Map<String, Object> paramsMap = model.asMap();
 		
 		// Access map and assign to variables
-		appointmentid = String.valueOf(paramsMap.get("appointmentid"));
-		banklocationserviceid = String.valueOf(paramsMap.get("banklocationserviceid"));
-		serviceid = String.valueOf(paramsMap.get("serviceid"));
-		appointmentdate = String.valueOf(paramsMap.get("appointmentdate"));
-		appointmentstartTime = String.valueOf(paramsMap.get("appointmentstartTime"));
-		appointmentendtime = String.valueOf(paramsMap.get("appointmentendtime"));
+		int appointmentid = 4;//Integer.toString((int) (Math.random() * 100)); //String.valueOf(paramsMap.get("appointmentid"));
+		String banklocationserviceid = "1"; //String.valueOf(paramsMap.get("banklocationserviceid"));
+		String serviceid = "1"; //String.valueOf(paramsMap.get("serviceid"));
+		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
+		String appointmentstarttime = httpServletRequest.getParameter("appointmentstarttime");
+		String appointmentendtime = "10:00 AM";  //String.valueOf(paramsMap.get("appointmentendtime"));
 		//customerid; //Should not exist in map
-		banklocationid = String.valueOf(paramsMap.get("banklocationid"));
+		//banklocationid = String.valueOf(paramsMap.get("banklocationid"));
 		//customerappointmentstatus = String.valueOf(paramsMap.get("customerappointmentstatus"));
-		appointmentserviceid = String.valueOf(paramsMap.get("appointmentserviceid"));
+		//appointmentserviceid = String.valueOf(paramsMap.get("appointmentserviceid"));
 		
 		String fname = httpServletRequest.getParameter("fname");
 		String lname = httpServletRequest.getParameter("lname");
@@ -135,7 +135,7 @@ public class HomeController {
 		s4dto.setBankLocationServiceId(banklocationserviceid);
 		s4dto.setServiceId(serviceid);
 		s4dto.setAppointmentDate(appointmentdate);
-		s4dto.setAppointmentStartTime(appointmentstartTime);
+		s4dto.setAppointmentStartTime(appointmentstarttime);
 		s4dto.setAppointmentEndTime(appointmentendtime);
 		//customerid;
 		s4dto.setBankLocationId(banklocationid);
@@ -149,8 +149,9 @@ public class HomeController {
 		s4dao.insCustomerData(s4dto);
 		
 		// Query for customerid
-		customerid = s4dao.queryCustomerId(s4dto);
+		String customerid = s4dao.queryCustomerId(s4dto);
 		s4dto.setCustomerId(customerid);
+		
 		
 		// Insert into "appointments" table
 		s4dao.insAppointmentData(s4dto);
@@ -163,9 +164,11 @@ public class HomeController {
 		
 		// Is this necessary?
 		model.addAttribute("CustomerFirstName", fname);
-		model.addAttribute("CustomerLastName", lname);
-		model.addAttribute("CustomerEmail", email);
-		model.addAttribute("CustomerPhoneNumber", phone);
+		//model.addAttribute("CustomerLastName", lname);
+		//model.addAttribute("CustomerEmail", email);
+		//model.addAttribute("CustomerPhoneNumber", phone);
+		model.addAttribute("appointmentdate", appointmentdate);
+		model.addAttribute("appointmentstarttime", appointmentstarttime);
 		
 		return "confirm_appt";
 	}

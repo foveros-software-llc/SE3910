@@ -215,8 +215,8 @@
 	
     </div>
     <form class="hidden" id="submit_form" action="/spring/date_selected" method="post">
-	<input type="hidden" id="date_holder" name="appointmentdate" value=" ">
-	<input type="hidden" id="time_holder"name="appointmentstartTime" value=" ">
+	<input type="hidden" id="date_holder" name="appointmentdate" value="">
+	<input type="hidden" id="time_holder"name="appointmentstarttime" value="">
 	<button type="submit" class="submit_Button">Continue</button>
 	</form>
 

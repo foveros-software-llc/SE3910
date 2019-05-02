@@ -11,14 +11,14 @@
 <body>
 
 Here's your appointment:<br/><br/>
-<label id="label1">${fname},</label>
+<label id="label1">${CustomerFirstName},</label>
 <label id="label2">Your appointment is scheduled.  We'll see you soon!</label><br/><br/>
 
 <label id="label3">${address}</label><br/>
 Open in Maps<br/><br/>
 
 <label id="label4">${appointmentdate}</label><br/>
-<label id="label5">${appointmentstartTime}</label><br/>
+<label id="label5">${appointmentstarttime}</label><br/>
 Add to Calendar<br/><br/><br/>
 
 <form>

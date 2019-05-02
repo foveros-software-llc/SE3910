@@ -96,7 +96,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "SELECT CustomerId FROM customers " +
-			"WHERE CustomerFirstName = '" + CustomerFirstName + "', CustomerLastName = '" + CustomerLastName + "', CustomerEmail = '" + CustomerEmail + "', CustomerPhoneNumber = '" + CustomerPhoneNumber +"';";
+			"WHERE CustomerEmail = '" + CustomerEmail + "';";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			
@@ -152,7 +152,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO appointments (AppointmentDate, AppointmentStartTime, AppointmentEndTime, CustomerId, BankLocationId)" +
-			" VALUES ('" + AppointmentDate + "', '" + AppointmentStartTime + "', '" + AppointmentEndTime + "', '" + CustomerId + "', '" + BankLocationId + "');";
+			" VALUES ('" + AppointmentDate + "', '" + AppointmentStartTime + "', '" + AppointmentEndTime + "', " + CustomerId + ", " + BankLocationId + ");";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}
@@ -189,7 +189,7 @@ public class S4Dao
 		*/
 			
 		// Data for "appointmentservices" table
-		String appointmentid = s4dto.getAppointmentId();
+		int appointmentid = s4dto.getAppointmentId();
 		String BankLocationServiceId = s4dto.getBankLocationServiceId();
 		String ServiceId = s4dto.getServiceId();
 			
@@ -198,7 +198,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO appointmentservices (appointmentid, BankLocationServiceId, ServiceId)" +
-			" VALUES ('" + appointmentid + "', '" + BankLocationServiceId + "', '" + ServiceId + "');";
+			" VALUES (" + appointmentid + ", " + BankLocationServiceId + ", " + ServiceId + ");";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}
@@ -238,7 +238,7 @@ public class S4Dao
 					
 		// Data for "customerappointments" table
 		//String CustomerAppointmentStatus = s4dto.getCustomerAppointmentStatus();
-		String appointmentid = s4dto.getAppointmentId();
+		int appointmentid = s4dto.getAppointmentId();
 		String AppointmentServiceId = s4dto.getAppointmentServiceId();
 					
 		// Insert data into "customerappointments" table
@@ -246,7 +246,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO customerappointments (CustomerAppointmentStatus, appointmentid, AppointmentServiceId)" +
-			" VALUES (0,'" + appointmentid + "', '" + AppointmentServiceId + "');";
+			" VALUES (0," + appointmentid + ", " + AppointmentServiceId + ");";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}

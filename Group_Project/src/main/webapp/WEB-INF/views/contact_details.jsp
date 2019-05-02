@@ -28,6 +28,8 @@
 </head>
 <body>
 <h1>Now we just need a few more details.</h1>
+Date: ${appointmentdate}
+Time: ${appointmentstartTime}
 <form action="/spring/confirm_appt" method="post">
     <div class="container1">
     </div>
@@ -55,7 +57,9 @@
     <br/>
     <br/>
     <br/>
-    <input type="submit" name="submit" id="submit" value="Continue">
+    <input type="text"name="appointmentdate" id="appointmentdate" value="${appointmentdate}">
+    <input type="text" name="appointmentstarttime" id="appointmentstarttime" value="${appointmentstartTime}">
+    <input type="submit" id="submit" value="Continue">
     </div>
 </form>
 </body>

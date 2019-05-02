@@ -18,8 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `sdg_db`
+DROP DATABASE sdg_db;
+CREATE DATABASE sdg_db;
 --
 
 -- --------------------------------------------------------
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `appointments` (
   `appointmentid` int(11) NOT NULL,
-  `AppointmentDate` date NOT NULL,
-  `AppointmentStartTime` time NOT NULL,
-  `AppointmentEndTime` time NOT NULL,
+  `AppointmentDate` varchar(60) NOT NULL,
+  `AppointmentStartTime` varchar(60) NOT NULL,
+  `AppointmentEndTime` varchar(60) NOT NULL,
   `CustomerId` int(11) DEFAULT NULL,
   `BankLocationId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -57,6 +57,8 @@
     <br/>
     <input type="hidden"name="appointmentdate" id="appointmentdate" value="${appointmentdate}">
     <input type="hidden" name="appointmentstarttime" id="appointmentstarttime" value="${appointmentstartTime}">
+    <input type="hidden" id="location_holder" name="banklocationid" value="${banklocationid}">
+	<input type="hidden" id="service_holder" name="appointmentserviceid" value="${appointmentserviceid}">
     <input type="submit" id="submit" value="Continue">
     </div>
 </form>

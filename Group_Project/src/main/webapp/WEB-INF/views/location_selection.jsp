@@ -79,7 +79,44 @@
     			.addEventListener('click', triggerInput, false);
     </script>
     <script async defer 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcH0cL9aL8PDd0Cww0Alxjez0rh2vtZkQ&callback=initMap">
+    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcH0cL9aL8PDd0Cww0Alxjez0rh2vtZkQ&callback=initMap">
     </script>
+    <script type="text/javascript">
+//     	function tableCreate() {
+// 		   	var body = document.getElementsByTagName('body')[0];
+// 		   	var tbl = document.createElement('table');
+// 		   	tbl.style.width = '90%';
+// 		   	tbl.setAttribute('border', '1');
+// 		   	var tbdy = document.createElement('tbody');
+// 		   	for (var i = 0; i < 3; i++) {
+// 		   		var tr = document.createElement('tr');
+// 		   	    for (var j = 0; j < 1; j++) {
+// 		   	        if (i == 2 && j == 1) {
+// 		   	        	break
+// 		   	        } else {
+// 		   	        	var td = document.createElement('td');
+// 		   	        	td.appendChild(document.createTextNode('arse'))
+// 		   	        	i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
+// 		   	        	tr.appendChild(td)
+// 		   	      	}
+// 		   	    }
+// 		   	    tbdy.appendChild(tr);
+// 		   	}
+// 		   	tbl.appendChild(tbdy);
+// 		   	body.appendChild(tbl)
+// 		}
+// 		tableCreate();
+    </script>
+    <div>
+	    <p align="right">0.5 miles</p>
+	    <p style="font-weight:bold;"><font size="5">1000 Walnut
+	    <br>Kansas City, MO 64093</font></p>
+	    <p>20 available appointments in the next week</p>
+	    <form action="/spring/location_selected" method="post">
+	    	<input type="hidden" name="banklocationid" value="1">
+	    	<input type="hidden" name="appointmentservice" value="${service_selected}">
+	    	<input type="submit" value="Submit" >
+	    </form>
+    </div>
 </body>
 </html>

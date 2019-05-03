@@ -239,11 +239,11 @@
     function timeSelected(date, time){
     	
     	if(date == 0){
-    		date_holder.value = user_date0;
+    		date_holder.value = user_date0; //.toDateString();
     	}else if(date == 1){
-    		date_holder.value = user_date1;
+    		date_holder.value = user_date1; //.toDateString();
     	}else if(date == 2){
-			date_holder.value = user_date2;
+			date_holder.value = user_date2; //.toDateString();
 		}
     	
     	time_holder.value = time; 

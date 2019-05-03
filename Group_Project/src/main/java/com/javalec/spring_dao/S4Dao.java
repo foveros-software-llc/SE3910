@@ -152,7 +152,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO appointments (AppointmentDate, AppointmentStartTime, AppointmentEndTime, CustomerId, BankLocationId)" +
-			" VALUES ('" + AppointmentDate + "', '" + AppointmentStartTime + "', '" + AppointmentEndTime + "', " + CustomerId + ", " + BankLocationId + ");";
+			"VALUES ('" + AppointmentDate + "', '" + AppointmentStartTime + "', '" + AppointmentEndTime + "', " + CustomerId + ", " + BankLocationId + ");";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}
@@ -198,7 +198,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO appointmentservices (appointmentid, BankLocationServiceId, ServiceId)" +
-			" VALUES (" + appointmentid + ", " + BankLocationServiceId + ", " + ServiceId + ");";
+			"VALUES (" + appointmentid + ", " + BankLocationServiceId + ", '" + ServiceId + "');";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}
@@ -246,7 +246,7 @@ public class S4Dao
 		{
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO customerappointments (CustomerAppointmentStatus, appointmentid, AppointmentServiceId)" +
-			" VALUES (0," + appointmentid + ", " + AppointmentServiceId + ");";
+			" VALUES (0," + appointmentid + ", " + AppointmentServiceId + ")";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.executeUpdate();
 		}

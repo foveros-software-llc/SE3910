@@ -16,8 +16,9 @@ Here's your appointment:<br/><br/>
 
 <label id="label3">${address}</label><br/>
 Open in Maps<br/><br/>
-
+Date:
 <label id="label4">${appointmentdate}</label><br/>
+Time:
 <label id="label5">${appointmentstarttime}</label><br/>
 Add to Calendar<br/><br/><br/>
 

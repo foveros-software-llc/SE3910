@@ -216,6 +216,8 @@
     </div>
     <form class="hidden" id="submit_form" action="/spring/date_selected" method="post">
 	<input type="hidden" id="date_holder" name="appointmentdate" value="">
+	<input type="hidden" id="location_holder" name="banklocationid" value="${banklocationid}">
+	<input type="hidden" id="service_holder" name="appointmentserviceid" value="${service_selected}">
 	<input type="hidden" id="time_holder"name="appointmentstarttime" value="">
 	<button type="submit" class="submit_Button">Continue</button>
 	</form>

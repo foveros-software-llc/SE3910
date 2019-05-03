@@ -52,10 +52,68 @@ public class HomeController {
 		return "service_selection";
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/service_selected")
+	public String screen1Controller(HttpServletRequest httpServletRequest, Model model)
+	{
+		String serviceSelected = httpServletRequest.getParameter("service");
+		
+		//System.out.println(serviceSelected);
+		
+		model.addAttribute("service_selected", serviceSelected);
+		
+		return "location_selection";
+	}
+	
 	@RequestMapping("/location_selection")
 	public String location_selection(Model model) 
 	{
 		return "location_selection";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/location_selected")
+	public String screen2Controller(HttpServletRequest httpServletRequest, Model model) {
+		
+		//Retrieving the data from the jsp
+		String banklocationid = httpServletRequest.getParameter("banklocationid");
+		String appointmentservice = httpServletRequest.getParameter("appointmentservice");
+		
+		String appointmentserviceid;
+		
+		if(appointmentservice.equals("Checking Account")) {
+			appointmentserviceid = "1";
+		} else if(appointmentservice.equals("Savings Account")) {
+			appointmentserviceid = "2";
+		} else if(appointmentservice.equals("CDs/Money Market Accounts")) {
+			appointmentserviceid = "3";
+			
+		} else if(appointmentservice.equals("Student Banking")) {
+			appointmentserviceid = "4";
+		} else if(appointmentservice.equals("Auto Loans")) {
+			appointmentserviceid = "5";
+		} else if(appointmentservice.equals("Home Equity")) {
+			appointmentserviceid = "6";
+			
+		} else if(appointmentservice.equals("Morgage")) {
+			appointmentserviceid = "7";
+		} else if(appointmentservice.equals("Student Loans")) {
+			appointmentserviceid = "8";
+		} else if(appointmentservice.equals("Sivins for Retirement")) {
+			appointmentserviceid = "9";
+			
+		} else if(appointmentservice.equals("Investment Account")) {
+			appointmentserviceid = "10";
+		} else if(appointmentservice.equals("Credit Cord")) {
+			appointmentserviceid = "11";
+		} else {
+			appointmentserviceid = "12";
+		}
+		
+		//Adding data to the model
+		model.addAttribute("banklocationid", banklocationid);
+		model.addAttribute("appointmentserviceid", appointmentserviceid);
+		
+		//Calling the next screen
+		return "date_selection";
 	}
 	
 	@RequestMapping("/date_selection")
@@ -70,9 +128,13 @@ public class HomeController {
 	public String screen3Controller(HttpServletRequest httpServletRequest, Model model) {
 		
 		//Retrieving the data from the jsp
+		String appointmentserviceid = httpServletRequest.getParameter("appointmentserviceid");
+		String banklocationid = httpServletRequest.getParameter("banklocationid");
 		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
 		String appointmentstartTime = httpServletRequest.getParameter("appointmentstarttime");
 		//Adding data to the model
+		model.addAttribute("appointmentserviceid", appointmentserviceid);
+		model.addAttribute("banklocationid", banklocationid);
 		model.addAttribute("appointmentdate", appointmentdate);
 		model.addAttribute("appointmentstartTime", appointmentstartTime);
 		
@@ -101,9 +163,9 @@ public class HomeController {
 		String appointmentstartTime = null;
 		String appointmentendtime = null;
 		String customerid = null;*/
-		String banklocationid = "1";
+		//String banklocationid = "1";
 		//String customerappointmentstatus = null;
-		String appointmentserviceid = "1";
+		//String appointmentserviceid = "1";
 		
 		// Get model map to determine key,value pairs of previous views
 		//Map<String, Object> paramsMap = model.asMap();
@@ -115,6 +177,8 @@ public class HomeController {
 		String appointmentdate = httpServletRequest.getParameter("appointmentdate");
 		String appointmentstarttime = httpServletRequest.getParameter("appointmentstarttime");
 		String appointmentendtime = "10:00 AM";  //String.valueOf(paramsMap.get("appointmentendtime"));
+		String banklocationid = httpServletRequest.getParameter("banklocationid");
+		String appointmentserviceid = httpServletRequest.getParameter("appointmentserviceid");
 		//customerid; //Should not exist in map
 		//banklocationid = String.valueOf(paramsMap.get("banklocationid"));
 		//customerappointmentstatus = String.valueOf(paramsMap.get("customerappointmentstatus"));

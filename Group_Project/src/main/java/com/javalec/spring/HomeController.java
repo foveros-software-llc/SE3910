@@ -50,8 +50,21 @@ public class HomeController {
 	public String service_selection(Model model) 
 	{
 		return "service_selection";
-	}
+	}	
 	
+	@RequestMapping(method=RequestMethod.POST, value="/service_selected")
+	public String screen1Controller(HttpServletRequest httpServletRequest, Model model)
+	{
+		String serviceSelected = httpServletRequest.getParameter("service");
+		
+		System.out.println(serviceSelected);
+		
+		model.addAttribute("service_selected", serviceSelected);
+		
+		return "location_selection";
+	}
+		
+
 	@RequestMapping("/location_selection")
 	public String location_selection(Model model) 
 	{

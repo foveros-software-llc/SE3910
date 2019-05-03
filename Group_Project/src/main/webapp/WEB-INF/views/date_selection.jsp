@@ -41,6 +41,19 @@
         cursor: pointer;
     }
     
+   .submit_Button1
+    {
+        float: left;
+        width: 10%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none; /* Prevent double borders */
+        cursor: pointer;
+    }
+    
     .buttons
     {
         width: 100px;
@@ -93,8 +106,61 @@
     var submit_form;
     var date_holder;
     var time_holder;
-    var weekday_times = new Array("9:00 AM","10:00 AM" ,"11:00 AM", "12:00 PM", "1:00 PM","2:00 PM","3:00 PM");
-    var weekend_times = new Array("10:00 AM" ,"11:00 AM");
+    var weekday_times1 = "<tr>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"9:00 AM\")'>9:00 AM</button></td>";
+    weekday_times1 += "<td><button  type='button' class='buttons' onclick='timeSelected(0, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"12:00 PM\")'>12:00 PM</button></td>";
+    weekday_times1 += "</tr>";
+    weekday_times1 += "<tr>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"1:00 PM\")'>1:00 PM</button></td>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"2:00 PM\")'>2:00 PM</button></td>";
+    weekday_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"3:00 PM\")'>3:00 PM</button></td>";
+    weekday_times1 += "</tr>"; 
+    	
+    var weekend_times1 = "<tr>";
+    weekend_times1 += "<td><button  type='button' class='buttons' onclick='timeSelected(0, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekend_times1 += "<td><button type='button' class='buttons' onclick='timeSelected(0, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekend_times1 += "</tr>";
+    
+    var weekday_times2 = "<tr>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"9:00 AM\")'>9:00 AM</button></td>";
+    weekday_times2 += "<td><button  type='button' class='buttons' onclick='timeSelected(1, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"12:00 PM\")'>12:00 PM</button></td>";
+    weekday_times2 += "</tr>";
+    weekday_times2 += "<tr>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"1:00 PM\")'>1:00 PM</button></td>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"2:00 PM\")'>2:00 PM</button></td>";
+    weekday_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"3:00 PM\")'>3:00 PM</button></td>";
+    weekday_times2 += "</tr>"; 
+    	
+    var weekend_times2 = "<tr>";
+    weekend_times2 += "<td><button  type='button' class='buttons' onclick='timeSelected(1, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekend_times2 += "<td><button type='button' class='buttons' onclick='timeSelected(1, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekend_times2 += "</tr>";
+    
+    var weekday_times3 = "<tr>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"9:00 AM\")'>9:00 AM</button></td>";
+    weekday_times3 += "<td><button  type='button' class='buttons' onclick='timeSelected(2, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"12:00 PM\")'>12:00 PM</button></td>";
+    weekday_times3 += "</tr>";
+    weekday_times3 += "<tr>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"1:00 PM\")'>1:00 PM</button></td>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"2:00 PM\")'>2:00 PM</button></td>";
+    weekday_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"3:00 PM\")'>3:00 PM</button></td>";
+    weekday_times3 += "</tr>"; 
+    	
+    var weekend_times3 = "<tr>";
+    weekend_times3 += "<td><button  type='button' class='buttons' onclick='timeSelected(2, \"10:00 AM\")'>10:00 AM</button></td>";
+    weekend_times3 += "<td><button type='button' class='buttons' onclick='timeSelected(2, \"11:00 AM\")'>11:00 AM</button></td>";
+    weekend_times3 += "</tr>";
+    
+    var branch_closed = "<tr>";
+    branch_closed += "<td>Branch Closed</td>";
+    branch_closed += "</tr>";
+    
     var table_string = " ";
     var days_of_the_week = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
     var user_date, user_date1, user_date2;
@@ -125,51 +191,41 @@
     		table_string += "<tr>"
     			table_string += "<th align='left' colspan='4'>" + user_date0.toDateString() + "</th>";
     		table_string += "</tr>";
-    		table_string += "<tr>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '9:00 AM')'>9:00 AM</button></td>";
-    			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(1, '10:00 AM')'>10:00 AM</button></td>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '11:00 AM')'>11:00 AM</button></td>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '12:00 PM')'>12:00 PM</button></td>";
-    		table_string += "</tr>";
-        	table_string += "<tr>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '1:00 PM')'>1:00 PM</button></td>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '2:00 PM')'>2:00 PM</button></td>";
-    			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(1, '3:00 PM')'>3:00 PM</button></td>";
-    		table_string += "</tr>";    			
+    		if(user_date0.toDateString().includes("Sat")){
+    			table_string += weekend_times1;	
+    		}else if(user_date0.toDateString().includes("Sun")){
+    			table_string += branch_closed;
+    		}else{
+    			table_string += weekday_times1;
+    		}    			
     	table_string += "</table>"
     		table_string += "<br/>"
         table_string += "<table>"
         	table_string += "<tr>"
        			table_string += "<th align='left' colspan='4'>" + user_date1.toDateString() + "</th>";
        		table_string += "</tr>";
-       		table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '9:00 AM')'>9:00 AM</button></td>";
-       			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(2, '10:00 AM')'>10:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '11:00 AM')'>11:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '12:00 PM')'>12:00 PM</button></td>";
-       		table_string += "</tr>";
-           	table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '1:00 PM')'>1:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '2:00 PM')'>2:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(2, '3:00 PM')'>3:00 PM</button></td>";
-       		table_string += "</tr>";    			
+    		if(user_date1.toDateString().includes("Sat")){
+    			table_string += weekend_times2;	
+    		}else if(user_date1.toDateString().includes("Sun")){
+    			table_string += branch_closed;
+    		}else{
+    			table_string += weekday_times2;
+    		}   
+
        	table_string += "</table>"
        		table_string += "<br/>"
        	table_string += "<table>"
        		table_string += "<tr>"
        			table_string += "<th align='left' colspan='4'>" + user_date2.toDateString() + "</th>";
        		table_string += "</tr>";
-       		table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '9:00 AM')'>9:00 AM</button></td>";
-       			table_string += "<td><button  type='button' class='buttons' onclick='timeSelected(3, '10:00 AM')'>10:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '11:00 AM')'>11:00 AM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '12:00 PM')'>12:00 PM</button></td>";
-       		table_string += "</tr>";
-           	table_string += "<tr>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '1:00 PM')'>1:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '2:00 PM')'>2:00 PM</button></td>";
-       			table_string += "<td><button type='button' class='buttons' onclick='timeSelected(3, '3:00 PM')'>3:00 PM</button></td>";
-       		table_string += "</tr>";    			
+       		
+    		if(user_date2.toDateString().includes("Sat")){
+    			table_string += weekend_times3;	
+    		}else if(user_date2.toDateString().includes("Sun")){
+    			table_string += branch_closed;
+    		}else{
+    			table_string += weekday_times3;
+    		}       			
        	table_string += "</table>";
        	table_string += "<br/>";    	
 
@@ -217,7 +273,7 @@
     <form class="hidden" id="submit_form" action="/spring/date_selected" method="post">
 	<input type="hidden" id="date_holder" name="appointmentdate" value="">
 	<input type="hidden" id="time_holder"name="appointmentstarttime" value="">
-	<button type="submit" class="submit_Button">Continue</button>
+	<button type="submit" class="submit_Button1">Continue</button>
 	</form>
 
 </body>
